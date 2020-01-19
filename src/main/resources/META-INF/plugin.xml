@@ -9,11 +9,12 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
+        <projectService serviceImplementation="gorepogen.intellij.plugin.service.TemplateProviderService"/>
     </extensions>
 
     <actions>
         <!-- Add your actions here -->
-        <action id="gorepogen.intellij.plugin.GenerateAction" class="gorepogen.intellij.plugin.GenerateAction"
+        <action id="gorepogen.intellij.plugin.action.GenerateAction" class="gorepogen.intellij.plugin.action.GenerateAction"
                 text="Generate">
             <add-to-group group-id="GenerateGroup" anchor="after" relative-to-action="GoGenerateForStruct"/>
             <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt G"/>

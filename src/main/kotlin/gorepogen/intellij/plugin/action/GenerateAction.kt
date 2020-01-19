@@ -1,4 +1,4 @@
-package gorepogen.intellij.plugin
+package gorepogen.intellij.plugin.action
 
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
