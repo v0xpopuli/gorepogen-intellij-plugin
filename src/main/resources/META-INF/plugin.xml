@@ -1,23 +1,22 @@
 <idea-plugin>
     <id>org.example.gorepogen-intellij-plugin</id>
     <name>gorepogen</name>
-    <vendor email="vadim.rozhkalns@gmail.com" url="https://github.com/v0xpopuli/gorepogen-intellij-plugin">v0xpopuli</vendor>
+    <vendor email="vadim.rozhkalns@gmail.com" url="https://github.com/v0xpopuli/gorepogen-intellij-plugin">v0xpopuli
+    </vendor>
 
-    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
-         on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
-        <projectService serviceImplementation="gorepogen.intellij.plugin.service.TemplateProviderService"/>
-    </extensions>
-
     <actions>
-        <!-- Add your actions here -->
-        <action id="gorepogen.intellij.plugin.action.GenerateAction" class="gorepogen.intellij.plugin.action.GenerateAction"
+        <action id="gorepogen.intellij.plugin.GenerateAction" class="gorepogen.intellij.plugin.GenerateAction"
                 text="Generate">
-            <add-to-group group-id="GenerateGroup" anchor="after" relative-to-action="GoGenerateForStruct"/>
+            <add-to-group group-id="GenerateGroup" anchor="after"
+                          relative-to-action="gorepogen.intellij.plugin.GenerateAction"/>
             <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt G"/>
         </action>
     </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceImplementation="gorepogen.intellij.plugin.GenerationService"/>
+    </extensions>
+
 </idea-plugin>
