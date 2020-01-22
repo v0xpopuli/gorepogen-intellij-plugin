@@ -23,13 +23,14 @@ object GenerationService {
         return ServiceManager.getService(project, GenerationService::class.java)
     }
 
-    fun generateFor(entityName: String, basePath: String) {
+    fun generateFor(entityName: String?, basePath: String) {
         try {
             GeneralCommandLine(resolveGorepogenLocation())
-                .apply {
+                .run {
                     this.addParameters("-n", entityName, "-r", basePath)
+                    this.createProcess()
                 }
-                .createProcess()
+                .waitFor()
         } catch (ex: ProcessNotCreatedException) {
             throw GorepogenNotFoundException()
         }
