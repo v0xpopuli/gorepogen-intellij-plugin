@@ -3,7 +3,7 @@ package gorepogen.intellij.plugin
 import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.progress.Task
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.ui.popup.JBPopupFactory
+import com.intellij.openapi.ui.Messages
 
 class GorepogenTask(project: Project) : Task.Modal(project, "Download and Install", true) {
 
@@ -11,25 +11,32 @@ class GorepogenTask(project: Project) : Task.Modal(project, "Download and Instal
         indicator.isIndeterminate = true
         indicator.start()
         indicator.text = "Downloading..."
-        startDownloading(indicator)
+        startDownloading()
         indicator.text = "Installing..."
         startInstalling()
         indicator.stop()
     }
 
-    private fun startDownloading(indicator: ProgressIndicator) = Runtime.getRuntime()
-        .exec("go get -u github.com/v0xpopuli/gorepogen/.../")
-        .inputStream
+    // TODO: determine why output doesn't writes to progress bar
+    private fun startDownloading() = Runtime
+        .getRuntime()
+        .exec("go get -v -u github.com/v0xpopuli/gorepogen/.../")
+        .waitFor()
 
-
-    private fun startInstalling() =
-        Runtime.getRuntime().exec("go build github.com/v0xpopuli/gorepogen/cmd")
-            .inputStream
+    // TODO: build with gorepogen name
+    private fun startInstalling() = Runtime
+        .getRuntime()
+        .exec("go build github.com/v0xpopuli/gorepogen/cmd")
+        .waitFor()
 
     override fun onSuccess() {
-        JBPopupFactory.getInstance()
-            .createMessage("Downloaded and installed. Try to generate again.")
-            .showCenteredInCurrentWindow(project)
+        // TODO: move text to message bundle
+        Messages.showMessageDialog(
+            project!!,
+            "Downloaded and installed. Try to generate again.",
+            "Success",
+            null
+        )
     }
 
 }

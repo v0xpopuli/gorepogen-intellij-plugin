@@ -28,12 +28,12 @@ class DownloadGorepogenDialog(private val project: Project) : DialogWrapper(proj
             ProgressManager.getInstance()
                 .run(GorepogenTask(project))
         } catch (ex: Exception) {
-            println(ex)
             this.close(CLOSE_EXIT_CODE)
         }
     }
 
     private fun createLabel() =
+        // TODO: move text to message bundle
         JLabel("GOREPOGEN was not found. Can i download the latest version?")
             .apply {
                 this.preferredSize = Dimension(70, 50)

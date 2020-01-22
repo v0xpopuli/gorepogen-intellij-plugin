@@ -10,13 +10,14 @@ object GenerationService {
 
     private val osName: String = SystemUtils.OS_NAME.toLowerCase()
 
+    // TODO: move those names to message bundle
     private val unixGorepogenPath: String =
         System.getenv("GOPATH")
-            .plus("/bin/gorepogen")
+            .plus("/bin/cmd")
 
     private val windowsGorepogenPath: String =
         System.getenv("GOPATH")
-            .plus("\\bin\\gorepogen.exe")
+            .plus("\\bin\\cmd.exe")
 
 
     fun getInstance(project: Project): GenerationService {
@@ -25,6 +26,7 @@ object GenerationService {
 
     fun generateFor(entityName: String?, basePath: String) {
         try {
+            // TODO: user Runtime.exec to follow common approach
             GeneralCommandLine(resolveGorepogenLocation())
                 .run {
                     this.addParameters("-n", entityName, "-r", basePath)
