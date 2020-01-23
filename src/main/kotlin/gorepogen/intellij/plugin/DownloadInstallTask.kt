@@ -6,26 +6,25 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.Messages
 
 class DownloadInstallTask(project: Project, private val gorepogenLocation: String) :
-    Task.Modal(project, MsgBundle.getMessage("gorepogen.progress"), true) {
+    Task.Backgroundable(project, MsgBundle.getMessage("gorepogen.progress"), true) {
 
-    override fun run(indicator: ProgressIndicator) {
-        indicator.isIndeterminate = true
-        indicator.start()
-        indicator.text = MsgBundle.getMessage("gorepogen.downloading")
-        startDownloading()
-        indicator.text = MsgBundle.getMessage("gorepogen.installing")
-        startInstalling()
-        indicator.stop()
-    }
+    override fun run(indicator: ProgressIndicator) = indicator
+        .run {
+            this.isIndeterminate = true
+            this.start()
+            this.text = MsgBundle.getMessage("gorepogen.downloading")
+            startDownloading()
+            this.text = MsgBundle.getMessage("gorepogen.installing")
+            startInstalling()
+            this.stop()
+        }
 
-    // TODO: determine why output doesn't writes to progress bar
-    private fun startDownloading() = Runtime
-        .getRuntime()
+
+    private fun startDownloading() = Runtime.getRuntime()
         .exec("go get -v -u github.com/v0xpopuli/gorepogen/.../")
         .waitFor()
 
-    private fun startInstalling() = Runtime
-        .getRuntime()
+    private fun startInstalling() = Runtime.getRuntime()
         .exec("go build -o ${this.gorepogenLocation} github.com/v0xpopuli/gorepogen/cmd")
         .waitFor()
 

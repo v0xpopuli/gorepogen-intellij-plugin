@@ -17,6 +17,7 @@ class GenerateAction : AnAction() {
             )
         }
 
+        // TODO: save file on event
         val generationService = GenerationService.getInstance()
         try {
             val result = generationService.generateFor(entityName!!, event.project!!.basePath!!)
