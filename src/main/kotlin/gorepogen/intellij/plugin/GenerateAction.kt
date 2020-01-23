@@ -3,6 +3,7 @@ package gorepogen.intellij.plugin
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.PlatformDataKeys
+import com.intellij.openapi.fileEditor.FileDocumentManager
 import com.intellij.openapi.ui.Messages
 
 class GenerateAction : AnAction() {
@@ -17,11 +18,14 @@ class GenerateAction : AnAction() {
             )
         }
 
-        // TODO: save file on event
         val generationService = GenerationService.getInstance()
         try {
+
+            FileDocumentManager.getInstance()
+                .saveDocument(event.getData(PlatformDataKeys.EDITOR)!!.document)
+
             val result = generationService.generateFor(entityName!!, event.project!!.basePath!!)
-            // TODO; maybe show popup, instead of dialog box
+
             Messages
                 .showMessageDialog(
                     event.project!!,
