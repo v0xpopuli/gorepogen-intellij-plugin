@@ -6,7 +6,7 @@
 
     <depends>com.intellij.modules.platform</depends>
 
-    <resource-bundle>MessageBundle</resource-bundle>
+    <resource-bundle>messages_en_US</resource-bundle>
 
     <actions>
         <action id="gorepogen.intellij.plugin.GenerateAction" class="gorepogen.intellij.plugin.GenerateAction"

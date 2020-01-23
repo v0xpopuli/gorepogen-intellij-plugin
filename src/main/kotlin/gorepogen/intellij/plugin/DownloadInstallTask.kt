@@ -5,14 +5,15 @@ import com.intellij.openapi.progress.Task
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.Messages
 
-class GorepogenTask(project: Project) : Task.Modal(project, "Download and Install", true) {
+class DownloadInstallTask(project: Project, private val gorepogenLocation: String) :
+    Task.Modal(project, MsgBundle.getMessage("gorepogen.progress"), true) {
 
     override fun run(indicator: ProgressIndicator) {
         indicator.isIndeterminate = true
         indicator.start()
-        indicator.text = "Downloading..."
+        indicator.text = MsgBundle.getMessage("gorepogen.downloading")
         startDownloading()
-        indicator.text = "Installing..."
+        indicator.text = MsgBundle.getMessage("gorepogen.installing")
         startInstalling()
         indicator.stop()
     }
@@ -23,20 +24,17 @@ class GorepogenTask(project: Project) : Task.Modal(project, "Download and Instal
         .exec("go get -v -u github.com/v0xpopuli/gorepogen/.../")
         .waitFor()
 
-    // TODO: build with gorepogen name
     private fun startInstalling() = Runtime
         .getRuntime()
-        .exec("go build github.com/v0xpopuli/gorepogen/cmd")
+        .exec("go build -o ${this.gorepogenLocation} github.com/v0xpopuli/gorepogen/cmd")
         .waitFor()
 
-    override fun onSuccess() {
-        // TODO: move text to message bundle
-        Messages.showMessageDialog(
+    override fun onSuccess() = Messages
+        .showMessageDialog(
             project!!,
-            "Downloaded and installed. Try to generate again.",
-            "Success",
+            MsgBundle.getMessage("gorepogen.ready_to_use"),
+            MsgBundle.getMessage("gorepogen.success"),
             null
         )
-    }
 
 }

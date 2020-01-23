@@ -10,15 +10,19 @@ class GenerateAction : AnAction() {
 
         val entityName = event.getData(PlatformDataKeys.EDITOR)?.selectionModel?.selectedText
         if (entityName == null) {
-            Messages.showErrorDialog(event.project!!, "Please, highlight entity first!", "Ooops...")
+            Messages.showErrorDialog(
+                event.project!!,
+                MsgBundle.getMessage("gorepogen.highlight.entity"),
+                MsgBundle.getMessage("gorepogen.fail")
+            )
         }
 
+        val generationService = GenerationService.getInstance(event.project!!)
+
         try {
-            GenerationService
-                .getInstance(event.project!!)
-                .generateFor(entityName, event.project!!.basePath!!)
-        } catch (ex: GorepogenNotFoundException) {
-            DownloadGorepogenDialog(event.project!!).show()
+            generationService.generateFor(entityName!!, event.project!!.basePath!!)
+        } catch (ex: NotFoundException) {
+            DownloadDialog(event.project!!, generationService.resolveGorepogenLocation()).show()
         }
 
     }

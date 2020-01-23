@@ -1,47 +1,31 @@
 package gorepogen.intellij.plugin
 
-import com.intellij.execution.configurations.GeneralCommandLine
-import com.intellij.execution.process.ProcessNotCreatedException
 import com.intellij.openapi.components.ServiceManager
 import com.intellij.openapi.project.Project
 import org.apache.commons.lang.SystemUtils
+import java.io.IOException
 
 object GenerationService {
 
-    private val osName: String = SystemUtils.OS_NAME.toLowerCase()
+    private const val goPath = "GOPATH"
 
-    // TODO: move those names to message bundle
-    private val unixGorepogenPath: String =
-        System.getenv("GOPATH")
-            .plus("/bin/cmd")
+    private val osName = SystemUtils.OS_NAME.toLowerCase()
 
-    private val windowsGorepogenPath: String =
-        System.getenv("GOPATH")
-            .plus("\\bin\\cmd.exe")
+    fun getInstance(project: Project) = ServiceManager.getService(project, GenerationService::class.java)!!
 
-
-    fun getInstance(project: Project): GenerationService {
-        return ServiceManager.getService(project, GenerationService::class.java)
-    }
-
-    fun generateFor(entityName: String?, basePath: String) {
+    fun generateFor(entityName: String, path: String) =
         try {
-            // TODO: user Runtime.exec to follow common approach
-            GeneralCommandLine(resolveGorepogenLocation())
-                .run {
-                    this.addParameters("-n", entityName, "-r", basePath)
-                    this.createProcess()
-                }
-                .waitFor()
-        } catch (ex: ProcessNotCreatedException) {
-            throw GorepogenNotFoundException()
+            // TODO: read output
+            Runtime.getRuntime().exec("${resolveGorepogenLocation()} -n $entityName -r $path").waitFor()
+        } catch (ex: IOException) {
+            throw NotFoundException()
         }
-    }
 
-    private fun resolveGorepogenLocation() =
+
+    fun resolveGorepogenLocation() =
         when {
-            isWindows() -> windowsGorepogenPath
-            isMac() || isUnix() -> unixGorepogenPath
+            isWindows() -> System.getenv(goPath).plus(MsgBundle.getMessage("gorepogen.windows"))
+            isMac() || isUnix() -> System.getenv(goPath).plus(MsgBundle.getMessage("gorepogen.unix"))
             else -> throw UnsupportedOperationException()
         }
 
