@@ -1,9 +1,12 @@
 package gorepogen.intellij.plugin
 
 import com.intellij.openapi.components.ServiceManager
-import com.intellij.openapi.project.Project
 import org.apache.commons.lang.SystemUtils
+import java.io.BufferedReader
 import java.io.IOException
+import java.io.InputStreamReader
+import java.util.*
+
 
 object GenerationService {
 
@@ -11,12 +14,14 @@ object GenerationService {
 
     private val osName = SystemUtils.OS_NAME.toLowerCase()
 
-    fun getInstance(project: Project) = ServiceManager.getService(project, GenerationService::class.java)!!
+    fun getInstance() = ServiceManager.getService(GenerationService::class.java)!!
 
-    fun generateFor(entityName: String, path: String) =
+    fun generateFor(entityName: String, path: String): String =
         try {
-            // TODO: read output
-            Runtime.getRuntime().exec("${resolveGorepogenLocation()} -n $entityName -r $path").waitFor()
+            val process = Runtime.getRuntime().exec("${resolveGorepogenLocation()} -n $entityName -r $path")
+            val scanner = Scanner(BufferedReader(InputStreamReader(process.inputStream)))
+            process.waitFor()
+            scanner.nextLine()
         } catch (ex: IOException) {
             throw NotFoundException()
         }

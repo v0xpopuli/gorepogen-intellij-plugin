@@ -17,10 +17,17 @@ class GenerateAction : AnAction() {
             )
         }
 
-        val generationService = GenerationService.getInstance(event.project!!)
-
+        val generationService = GenerationService.getInstance()
         try {
-            generationService.generateFor(entityName!!, event.project!!.basePath!!)
+            val result = generationService.generateFor(entityName!!, event.project!!.basePath!!)
+            // TODO; maybe show popup, instead of dialog box
+            Messages
+                .showMessageDialog(
+                    event.project!!,
+                    result,
+                    MsgBundle.getMessage("gorepogen.result"),
+                    null
+                )
         } catch (ex: NotFoundException) {
             DownloadDialog(event.project!!, generationService.resolveGorepogenLocation()).show()
         }
