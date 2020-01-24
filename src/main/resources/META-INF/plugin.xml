@@ -1,12 +1,21 @@
-<idea-plugin>
-    <id>org.example.gorepogen-intellij-plugin</id>
-    <name>gorepogen</name>
+<idea-plugin url="https://www.jetbrains.com/idea">
+    <name>GoRepoGen</name>
+    <id>gorepogen.intellij.plugin.gorepogen-intellij-plugin</id>
     <vendor email="vadim.rozhkalns@gmail.com" url="https://github.com/v0xpopuli/gorepogen-intellij-plugin">v0xpopuli
     </vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
     <resource-bundle>messages</resource-bundle>
+
+    <version>1.0.0</version>
+
+    <description>Integrates github.com/v0xpopuli/gorepogen utility into IDE.
+        GoRepoGen provides ability to repositories auto generation for entities.
+        1. Highlight entity you want generate repository for.
+        2. Ctrl+Alt+G then.
+        3. Voila, repository ready to use.
+    </description>
 
     <actions>
         <action id="gorepogen.intellij.plugin.GenerateAction" class="gorepogen.intellij.plugin.GenerateAction"
