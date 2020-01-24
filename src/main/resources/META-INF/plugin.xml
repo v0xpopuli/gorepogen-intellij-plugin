@@ -10,11 +10,16 @@
 
     <version>1.0.0</version>
 
-    <description>Integrates github.com/v0xpopuli/gorepogen utility into IDE.
-        GoRepoGen provides ability to repositories auto generation for entities.
-        1. Highlight entity you want generate repository for.
-        2. Ctrl+Alt+G then.
-        3. Voila, repository ready to use.
+    <description><![CDATA[
+    <h1>GoRepoGen</h1>
+    <div>Integrates <a href="https://github.com/v0xpopuli/gorepogen">GoRepoGen</a> utility into IDE.<br>
+    GoRepoGen provides ability to repositories auto generation for entities.</div>
+    <ol>
+    <li> Highlight entity you want generate repository for.</li>
+    <li> Ctrl+Alt+G then.</li>
+    <li> Voila, repository ready to use.</li>
+    </ol>
+    ]]>
     </description>
 
     <actions>
