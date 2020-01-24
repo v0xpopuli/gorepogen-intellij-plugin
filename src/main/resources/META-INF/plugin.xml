@@ -19,6 +19,8 @@
     <li> Ctrl+Alt+G then.</li>
     <li> Voila, repository ready to use.</li>
     </ol>
+    <h3>NOTE<h3>
+    <div> <a href="https://github.com/jinzhu/gorm">GORM are used as ORM</a> </div>
     ]]>
     </description>
 
