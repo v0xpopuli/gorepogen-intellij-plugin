@@ -3,8 +3,7 @@ jdk:
   - oraclejdk8
 dist: trusty
 before_install:
-  - ls -l
-  - chmod +x gradlew
-  - chmod +x gradle/wrapper/gradle-wrapper.jar
+  - chmod +x ./gradlew
+  - chmod +x ./gradle/wrapper/gradle-wrapper.jar
 script:
   - ./gradlew test build
