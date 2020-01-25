@@ -18,13 +18,12 @@ class GenerateAction : AnAction() {
             )
         }
 
-        val generationService = GenerationService.getInstance()
         try {
 
             FileDocumentManager.getInstance()
                 .saveDocument(event.getData(PlatformDataKeys.EDITOR)!!.document)
 
-            val result = generationService.generateFor(entityName!!, event.project!!.basePath!!)
+            val result = GenerationService.instance.generateFor(entityName!!, event.project!!.basePath!!)
 
             Messages
                 .showMessageDialog(
@@ -34,7 +33,7 @@ class GenerateAction : AnAction() {
                     null
                 )
         } catch (ex: NotFoundException) {
-            DownloadDialog(event.project!!, generationService.resolveGorepogenLocation()).show()
+            DownloadDialog(event.project!!, PathResolver.getGorepogenPath()).show()
         }
 
     }
