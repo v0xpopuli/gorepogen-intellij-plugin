@@ -19,11 +19,8 @@ jacocoTestReport {
 }
 
 tasks.coveralls {
-    dependsOn 'test build'
-}
-
-coveralls {
-    jacocoReportPath 'build/reports/jacoco/test/jacocoTestReport.xml'
+    dependsOn 'test'
+    dependsOn 'build'
 }
 
 repositories {
