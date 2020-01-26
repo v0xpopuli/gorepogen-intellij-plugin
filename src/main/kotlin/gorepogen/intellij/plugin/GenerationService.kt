@@ -1,7 +1,7 @@
 package gorepogen.intellij.plugin
 
 import com.intellij.openapi.components.ServiceManager
-import com.intellij.openapi.vfs.VirtualFileManager
+import gorepogen.intellij.plugin.utils.FileUtil
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
@@ -21,7 +21,7 @@ object GenerationService {
                     scanner.nextLine()
                 }
                 .apply {
-                    VirtualFileManager.getInstance().asyncRefresh(null)
+                    FileUtil.refresh()
                 }
         } catch (ex: IOException) {
             throw NotFoundException()

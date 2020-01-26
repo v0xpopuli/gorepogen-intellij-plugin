@@ -1,8 +1,8 @@
 package gorepogen.intellij.plugin
 
-import com.intellij.openapi.progress.ProgressManager
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.DialogWrapper
+import gorepogen.intellij.plugin.utils.TaskUtil
 import java.awt.BorderLayout
 import java.awt.Dimension
 import javax.swing.JLabel
@@ -11,8 +11,8 @@ import javax.swing.JPanel
 
 class DownloadDialog(private val project: Project, private val gorepogenLocation: String) : DialogWrapper(project) {
 
-    init {
-        init()
+    override fun init() {
+        super.init()
         title = MsgBundle.getMessage("gorepogen.fail")
     }
 
@@ -23,7 +23,7 @@ class DownloadDialog(private val project: Project, private val gorepogenLocation
 
     override fun doOKAction() = try {
         this.close(OK_EXIT_CODE)
-        ProgressManager.getInstance().run(DownloadInstallTask(this.project, this.gorepogenLocation))
+        TaskUtil.downloadAndInstall(this.project, this.gorepogenLocation)
     } catch (ex: Exception) {
         this.close(CLOSE_EXIT_CODE)
     }
