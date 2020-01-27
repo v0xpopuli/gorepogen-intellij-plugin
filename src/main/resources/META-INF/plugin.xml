@@ -8,7 +8,7 @@
 
     <resource-bundle>messages</resource-bundle>
 
-    <version>1.0.1</version>
+    <version>1.0.0</version>
 
     <description><![CDATA[
     <h1>GoRepoGen</h1>
@@ -16,22 +16,13 @@
     GoRepoGen provides ability to repositories auto generation for entities.</div>
     <ol>
     <li> Highlight entity you want to generate repository for.</li>
-    <li> Ctrl+Alt+G then.</li>
+    <li> Alt+G then.</li>
     <li> Voila, repository ready to use.</li>
     </ol>
     <h3>NOTE<h3>
     <div> <a href="https://github.com/jinzhu/gorm">GORM</a> are used as ORM</div>
     ]]>
     </description>
-
-    <change-notes>
-    <![CDATA[
-    <ul>
-    <li> Download dialog bug fix. </li>
-    <li> Mac shortcut support added. </li>
-    </ul>
-    ]]>
-    </change-notes>
 
     <actions>
         <action id="gorepogen.intellij.plugin.GenerateAction" class="gorepogen.intellij.plugin.GenerateAction"
