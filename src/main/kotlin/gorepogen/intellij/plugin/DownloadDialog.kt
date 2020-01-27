@@ -11,8 +11,8 @@ import javax.swing.JPanel
 
 class DownloadDialog(private val project: Project, private val gorepogenLocation: String) : DialogWrapper(project) {
 
-    override fun init() {
-        super.init()
+    init {
+        init()
         title = MsgBundle.getMessage("gorepogen.fail")
     }
 
