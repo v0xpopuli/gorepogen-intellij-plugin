@@ -1,7 +1,7 @@
-<idea-plugin url="https://www.jetbrains.com/idea">
+<idea-plugin>
     <name>GoRepoGen</name>
     <id>gorepogen.intellij.plugin.gorepogen-intellij-plugin</id>
-    <vendor email="vadim.rozhkalns@gmail.com" url="https://github.com/v0xpopuli/gorepogen-intellij-plugin">v0xpopuli
+    <vendor url="https://github.com/v0xpopuli/gorepogen-intellij-plugin" email="vadim.rozhkalns@gmail.com">v0xpopuli
     </vendor>
 
     <depends>com.intellij.modules.platform</depends>
@@ -20,7 +20,7 @@
     <li> Voila, repository ready to use.</li>
     </ol>
     <h3>NOTE<h3>
-    <div> <a href="https://github.com/jinzhu/gorm">GORM are used as ORM</a> </div>
+    <div> <a href="https://github.com/jinzhu/gorm">GORM</a> are used as ORM</div>
     ]]>
     </description>
 
