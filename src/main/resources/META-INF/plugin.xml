@@ -8,7 +8,7 @@
 
     <resource-bundle>messages</resource-bundle>
 
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <description><![CDATA[
     <h1>GoRepoGen</h1>
@@ -24,12 +24,21 @@
     ]]>
     </description>
 
+    <change-notes>
+    <![CDATA[
+    <ul>
+    <li> Download dialog bug fix. </li>
+    <li> Mac shortcut support added. </li>
+    </ul>
+    ]]>
+    </change-notes>
+
     <actions>
         <action id="gorepogen.intellij.plugin.GenerateAction" class="gorepogen.intellij.plugin.GenerateAction"
                 text="Generate">
             <add-to-group group-id="GenerateGroup" anchor="after"
                           relative-to-action="gorepogen.intellij.plugin.GenerateAction"/>
-            <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt G"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="alt G"/>
         </action>
     </actions>
 
