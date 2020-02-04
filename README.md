@@ -7,7 +7,7 @@ GoRepoGen provides ability to repositories auto generation for entities.
    
 ### Usage
 1. Highlight entity you want to generate repository for.
-2. Ctrl+Alt+G then.
+2. Alt+G then.
 3. Voila, repository ready to use.
     
 ### NOTE
