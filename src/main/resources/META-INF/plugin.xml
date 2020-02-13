@@ -25,10 +25,11 @@
     </description>
 
     <actions>
-        <action id="gorepogen.intellij.plugin.GenerateAction" class="gorepogen.intellij.plugin.GenerateAction"
-                text="Generate">
-            <add-to-group group-id="GenerateGroup" anchor="after"
-                          relative-to-action="gorepogen.intellij.plugin.GenerateAction"/>
+        <action id="gorepogen.intellij.plugin.GenerateAction"
+                class="gorepogen.intellij.plugin.GenerateAction"
+                description="Generate Builder pattern code for Go"
+                text="Generate Repository">
+            <add-to-group group-id="CodeMenu" anchor="after" relative-to-action="Generate"/>
             <keyboard-shortcut keymap="$default" first-keystroke="alt G"/>
         </action>
     </actions>
