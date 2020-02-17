@@ -11,4 +11,4 @@ GoRepoGen provides ability to repositories auto generation for entities.
 3. Voila, repository ready to use.
     
 ### NOTE
-[GORM](https://github.com/jinzhu/gorm) are used as ORM
+[GORM](https://github.com/jinzhu/gorm) is used as ORM

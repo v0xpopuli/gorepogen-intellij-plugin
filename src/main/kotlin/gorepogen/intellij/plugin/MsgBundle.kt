@@ -5,7 +5,7 @@ import java.util.*
 
 object MsgBundle {
 
-    private var bundle = ResourceBundle.getBundle("messages", Locale("en", "US"))
+    private var bundle = ResourceBundle.getBundle("messages")
 
     fun getMessage(title: String) = String(bundle.getString(title).toByteArray(), Charsets.UTF_8)
 

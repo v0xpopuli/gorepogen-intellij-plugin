@@ -8,26 +8,46 @@
 
     <resource-bundle>messages</resource-bundle>
 
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 
     <description><![CDATA[
+    <html>
     <h1>GoRepoGen</h1>
-    <div>Integrates <a href="https://github.com/v0xpopuli/gorepogen">GoRepoGen</a> utility into IDE.<br>
-    GoRepoGen provides ability to repositories auto generation for entities.</div>
+    <div>Integrates <a href="https://github.com/v0xpopuli/gorepogen">GoRepoGen</a>(golang) utility into IDE.<br>
+    GoRepoGen provides ability to repositories auto generation for entities.
+    </div>
     <ol>
     <li> Highlight entity you want to generate repository for.</li>
     <li> Alt+G then.</li>
     <li> Voila, repository ready to use.</li>
     </ol>
-    <h3>NOTE<h3>
-    <div> <a href="https://github.com/jinzhu/gorm">GORM</a> are used as ORM</div>
+    <h3>NOTE</h3>
+    <div><a href="https://github.com/jinzhu/gorm">GORM</a> is used as ORM</div>
+    </html>
     ]]>
     </description>
+
+    <change-notes><![CDATA[
+    <html>
+    <b>v1.0.2</b> (Feb 17, 2020)
+    <ul>
+    <li>Remove specific locale from resource bundle, now it works with all locales</li>
+    </ul>
+    <b>v1.0.1</b> (Feb 13, 2020)
+    <ul>
+    <li>Update plugin.xml</li>
+    </ul>
+    <b>v1.0.0</b> (Jan 27, 2020)
+    <ul>
+    <li>Initial</li>
+    </ul>
+    </html>
+    ]]>
+    </change-notes>
 
     <actions>
         <action id="gorepogen.intellij.plugin.GenerateAction"
                 class="gorepogen.intellij.plugin.GenerateAction"
-                description="Generate Builder pattern code for Go"
                 text="Generate Repository">
             <add-to-group group-id="CodeMenu" anchor="after" relative-to-action="Generate"/>
             <keyboard-shortcut keymap="$default" first-keystroke="alt G"/>
