@@ -11,7 +11,6 @@ class DownloadInstallTask(project: Project, private val gorepogenLocation: Strin
     override fun run(indicator: ProgressIndicator) = indicator
         .run {
             this.isIndeterminate = true
-            this.start()
             this.text = MsgBundle.getMessage("gorepogen.downloading")
             startDownloading()
             this.text = MsgBundle.getMessage("gorepogen.installing")

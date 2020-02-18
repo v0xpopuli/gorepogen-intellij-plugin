@@ -8,7 +8,7 @@
 
     <resource-bundle>messages</resource-bundle>
 
-    <version>1.0.2</version>
+    <version>1.0.3</version>
 
     <description><![CDATA[
     <html>
@@ -29,6 +29,10 @@
 
     <change-notes><![CDATA[
     <html>
+    <b>v1.0.3</b> (Feb 18, 2020)
+    <ul>
+    <li>Fix unnecessary start download task</li>
+    </ul>
     <b>v1.0.2</b> (Feb 17, 2020)
     <ul>
     <li>Remove specific locale from resource bundle, now it works with all locales</li>
