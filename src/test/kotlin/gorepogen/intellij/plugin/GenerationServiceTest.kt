@@ -32,7 +32,7 @@ class GenerationServiceTest : BasePlatformTestCase() {
         val gorepogenPath = "path/to/gorepogen"
         val entityName = "entityName"
         val entityPath = "entityPath"
-        val command = "$gorepogenPath -n $entityName -r $entityPath"
+        val command = listOf(gorepogenPath, "-n", entityName, "-r", entityPath)
         val result = "Repository successfully generated".toByteArray()
         val processWrapper = ProcessWrapper(null, ByteArrayInputStream(result))
 
@@ -52,7 +52,7 @@ class GenerationServiceTest : BasePlatformTestCase() {
         val gorepogenPath = "path/to/gorepogen"
         val entityName = "entityName"
         val entityPath = "entityPath"
-        val command = "$gorepogenPath -n $entityName -r $entityPath"
+        val command = listOf(gorepogenPath, "-n", entityName, "-r", entityPath)
 
         every { PathResolver.getGorepogenPath() } returns gorepogenPath
         every { ProcessExecutor.execute(eq(command)) } throws IOException()

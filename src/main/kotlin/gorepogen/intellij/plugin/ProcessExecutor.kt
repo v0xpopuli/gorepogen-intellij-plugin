@@ -1,11 +1,12 @@
 package gorepogen.intellij.plugin
 
+import com.intellij.execution.configurations.GeneralCommandLine
 import java.io.InputStream
 
 object ProcessExecutor {
 
-    fun execute(command: String) = Runtime.getRuntime()
-        .exec(command)
+    fun execute(command: List<String>) = GeneralCommandLine(command)
+        .createProcess()
         .run {
             ProcessWrapper(this, this.inputStream)
         }

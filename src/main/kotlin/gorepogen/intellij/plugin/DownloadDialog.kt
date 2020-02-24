@@ -9,7 +9,7 @@ import javax.swing.JLabel
 import javax.swing.JPanel
 
 
-class DownloadDialog(private val project: Project, private val gorepogenLocation: String) : DialogWrapper(project) {
+class DownloadDialog(private val project: Project) : DialogWrapper(project) {
 
     init {
         init()
@@ -23,7 +23,7 @@ class DownloadDialog(private val project: Project, private val gorepogenLocation
 
     override fun doOKAction() = try {
         this.close(OK_EXIT_CODE)
-        TaskUtil.downloadAndInstall(this.project, this.gorepogenLocation)
+        TaskUtil.downloadAndInstall(this.project)
     } catch (ex: Exception) {
         this.close(CLOSE_EXIT_CODE)
     }

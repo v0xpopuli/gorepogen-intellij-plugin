@@ -5,15 +5,21 @@ import org.apache.commons.lang.SystemUtils
 object PathResolver {
 
     private const val goPathEnvVarName = "GOPATH"
+    private const val unixHomeVarName = "HOME"
+    private const val windowsUserProfileVarName = "USERPROFILE"
 
     private val osName = SystemUtils.OS_NAME.toLowerCase()
 
     fun getGorepogenPath() =
         when {
-            isWindows() -> System.getenv(goPathEnvVarName).plus(MsgBundle.getMessage("gorepogen.windows"))
-            isMac() || isUnix() -> System.getenv(goPathEnvVarName).plus(MsgBundle.getMessage("gorepogen.unix"))
+            isWindows() -> resolveGorepogenPath(windowsUserProfileVarName, "/go/bin/gorepogen.exe")
+            isMac() || isUnix() -> resolveGorepogenPath(unixHomeVarName, "/go/bin/gorepogen")
             else -> throw UnsupportedOperationException()
         }
+
+    private fun resolveGorepogenPath(fallback: String, executableName: String) =
+        System.getenv(goPathEnvVarName)?.plus(executableName)
+            ?: System.getenv(fallback)?.plus(executableName)
 
     private fun isWindows() = osName.indexOf("win") >= 0
 

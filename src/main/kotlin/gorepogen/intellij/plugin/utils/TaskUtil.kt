@@ -6,7 +6,8 @@ import gorepogen.intellij.plugin.DownloadInstallTask
 
 object TaskUtil {
 
-    fun downloadAndInstall(project: Project, gorepogenLocation: String) = ProgressManager.getInstance()
-        .run(DownloadInstallTask(project, gorepogenLocation))
+    fun downloadAndInstall(project: Project) = ProgressManager
+        .getInstance()
+        .run(DownloadInstallTask(project))
 
 }

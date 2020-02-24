@@ -8,7 +8,7 @@
 
     <resource-bundle>messages</resource-bundle>
 
-    <version>1.0.3</version>
+    <version>1.0.4</version>
 
     <description><![CDATA[
     <html>
@@ -29,6 +29,10 @@
 
     <change-notes><![CDATA[
     <html>
+    <b>v1.0.4</b> (Feb 24, 2020)
+    <ul>
+    <li>Add fallback directory in case of empty GOPATH</li>
+    </ul>
     <b>v1.0.3</b> (Feb 18, 2020)
     <ul>
     <li>Fix unnecessary start download task</li>
