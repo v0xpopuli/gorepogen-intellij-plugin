@@ -12,14 +12,14 @@ object PathResolver {
 
     fun getGorepogenPath() =
         when {
-            isWindows() -> resolveGorepogenPath(windowsUserProfileVarName, "/go/bin/gorepogen.exe")
-            isMac() || isUnix() -> resolveGorepogenPath(unixHomeVarName, "/go/bin/gorepogen")
+            isWindows() -> resolveGorepogenPath(windowsUserProfileVarName, "/bin/gorepogen.exe")
+            isMac() || isUnix() -> resolveGorepogenPath(unixHomeVarName, "/bin/gorepogen")
             else -> throw UnsupportedOperationException()
         }
 
     private fun resolveGorepogenPath(fallback: String, executableName: String) =
         System.getenv(goPathEnvVarName)?.plus(executableName)
-            ?: System.getenv(fallback)?.plus(executableName)
+            ?: System.getenv(fallback).plus("/go$executableName")
 
     private fun isWindows() = osName.indexOf("win") >= 0
 
